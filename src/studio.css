@@ -2251,3 +2251,10 @@ pre.code {
     padding: 10px;
   }
 }
+
+/* 폰: 기술 쪽 「원리」 · 「언제 쓰나」 두 칸을 위아래로 (나란히면 글줄이 너무 좁다) */
+@media (max-width: 640px) {
+  .doc-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

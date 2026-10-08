@@ -195,5 +195,16 @@ export async function buildAiFiles(): Promise<Record<string, string>> {
     '',
   ].join('\n');
 
+  // 검색 엔진용 — 화면은 자바스크립트라 못 읽으니 글 파일 주소를 알려 준다 (robots.txt 는 public/ 에 고정)
+  const today = new Date().toISOString().slice(0, 10);
+  const urls = [`${SITE}/`, `${SITE}/llms.txt`, ...index.map((x) => SITE + x.md), ...RECIPES.map((r) => `${SITE}/ai/recipes/${r.id}.md`)];
+  files['sitemap.xml'] = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...urls.map((u) => `  <url><loc>${u}</loc><lastmod>${today}</lastmod></url>`),
+    '</urlset>',
+    '',
+  ].join('\n');
+
   return files;
 }

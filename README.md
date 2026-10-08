@@ -2,10 +2,10 @@
 
 **https://ai-techstudio.web.app**
 
-웹 게임에 쓰는 그래픽 · 연출 · 물리 · 시스템 기술 470여 가지를 **움직이는 견본**으로 보고, **AI 코딩 도구가 직접 찾아 쓰게** 하는 기술 도감입니다.
+웹 게임에 쓰는 그래픽 · 연출 · 물리 · 시스템 기술 380여 가지(+ 효과 예시 80여 개)를 **움직이는 견본**으로 보고, **AI 코딩 도구가 직접 찾아 쓰게** 하는 기술 도감입니다.
 대부분 three.js + TypeScript 이고, 2D 캔버스 · Web Audio 도 있습니다. 기술마다 주문서(AI 에게 줄 요구 사항) · 원리 · 흔한 실수 · 완성 기준 · 견본 실제 코드가 들어 있습니다.
 
-A library of 470+ web-game techniques (shaders, VFX, materials, lighting, physics, procedural modeling, rigging, maps, pathfinding, game AI, sound) with live demos, build specs and real demo source — searchable by AI coding agents over MCP.
+A library of 380+ web-game techniques (plus 80+ effect examples) (shaders, VFX, materials, lighting, physics, procedural modeling, rigging, maps, pathfinding, game AI, sound) with live demos, build specs and real demo source — searchable by AI coding agents over MCP.
 
 ---
 

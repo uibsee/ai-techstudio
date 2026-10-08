@@ -10,3 +10,4 @@ dist/
 /public/llms.txt
 /functions/data/
 functions/node_modules/
+/public/sitemap.xml

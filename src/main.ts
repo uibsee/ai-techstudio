@@ -38,7 +38,7 @@ const main = h('main', 'main');
 const foot = h(
   'footer',
   'foot',
-  `<div class="top-in"><span>기술 스튜디오</span><nav><a href="#connect">AI 연결 안내</a><a href="#labs">특별 무대</a><a href="#research">연구 노트</a></nav></div>`,
+  `<div class="top-in"><span>기술 스튜디오</span><nav><a href="#connect">AI 연결 안내</a><a href="#labs">특별 무대</a><a href="#research">연구 노트</a><a href="https://github.com/uibsee/ai-techstudio" target="_blank" rel="noopener">GitHub</a></nav></div>`,
 );
 const scroller = h('div', 'scroller');
 scroller.append(main, foot);
