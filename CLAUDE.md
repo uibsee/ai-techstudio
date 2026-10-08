@@ -10,3 +10,8 @@
 - `src/game/` · `src/services/artSlots.ts` · `src/assets/games/` = 수학 놀이터 게임 코드 **복사본**(2026-10-08). 견본 · 특별 무대가 쓴다(툰 · 동화책 물 · 주사위 · 숫자 야구 무대 · 주차장 무대 · 용 모델). 게임 쪽이 바뀌어도 저절로 따라오지 않는다 — 필요하면 다시 복사. `src/i18n/index.ts` 는 한국어 그대로 돌려주는 대역.
 - 게임 이름표 `src/gameTitles.ts`(manifest 에서 뽑아 굳힘) · 게임 사진 `src/shots/<게임 id>.jpg`. 「이 기술을 쓴 게임」 단추는 mathmiri.com 을 연다.
 - 예전 「실전 무대」(게임을 같은 출처 iframe 으로 띄워 조절판 걸기)는 분리하면서 뺐다. 게임 쪽 `src/game/core/devThree.ts` 는 수학 놀이터에 남아 있다.
+- **AI 가 직접 쓰는 길 (2026-10-08)**: 사람용 화면은 자바스크립트로 그려 AI 도구가 못 읽는다 → 같은 데이터를 글로.
+  - `npm run export-ai` (build 가 먼저 부름) = `scripts/export-ai.mjs` 가 `src/ai/exportData.ts` 를 vite 로 node 에서 불러 `public/llms.txt` · `public/ai/index.json` · `public/ai/t/<id>.md`(AI 꾸러미 + 견본 실제 코드) · `public/ai/recipes/<id>.md` 생성 (생성물이라 git 제외). 견본은 실행하지 않고 원문만 읽는다(`docs/sourceCore.ts`). 영어 용어 없는 기술은 `EXTRA_EN` 에 적거나 효과 예시면 만든 기술 것을 물려받음
+  - MCP 서버 = `functions/index.js` (Firebase Functions 2세대, us-central1, Hosting `/mcp` 로 넘김). 도구 search_techniques · get_technique · list_categories · list_recipes · get_recipe. 데이터는 predeploy 가 `public/ai` → `functions/data` 복사. 연결: `claude mcp add --transport http ai-techstudio https://ai-techstudio.web.app/mcp`
+  - 전체 배포 `firebase deploy` (함수 + 사이트). 사이트만 `firebase deploy --only hosting`. 함수 이미지 정리 규칙 1일 설정함
+  - 로컬 시험: functions/index.js 의 `serve` 를 node http 로 감싸 POST (스크래치 mcpserve.mjs 꼴)

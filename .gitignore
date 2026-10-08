@@ -5,3 +5,8 @@ dist/
 .claude/
 .DS_Store
 .firebase/
+# 빌드가 만드는 AI 용 글 (scripts/export-ai.mjs)
+/public/ai/
+/public/llms.txt
+/functions/data/
+functions/node_modules/

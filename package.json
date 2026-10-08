@@ -6,9 +6,10 @@
   "description": "기술 스튜디오 — 게임 그래픽 · 연출 · 시스템 기술 견본과 주문서",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "node scripts/export-ai.mjs && tsc --noEmit && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "export-ai": "node scripts/export-ai.mjs"
   },
   "dependencies": {
     "matter-js": "^0.20.0",

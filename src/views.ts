@@ -13,26 +13,8 @@ import { LABS } from './labs';
  * 각 view 함수는 main 영역에 그리고 정리 함수를 돌려준다.
  */
 
-export interface Domain {
-  id: string;
-  name: string;
-  desc: string;
-  cats: string[];
-  /** 대표 견본 (홈 타일) */
-  hero: string;
-}
-export const DOMAINS: Domain[] = [
-  { id: 'look', name: '그래픽 · 셰이더', desc: '재질 · 빛 · 후처리 · 셰이더로 화면의 느낌을 만들어요', cats: ['재질 · 그림체', '빛 · 환경', '후처리', '셰이더', 'WebGPU · 최신 렌더링', '우주 표현'], hero: 'u01' },
-  { id: 'model', name: '3D 모델 · 캐릭터', desc: '블렌더 없이 코드로 — 나무 · 바위 · 캐릭터 · 뼈대 · 걷기 · 표정', cats: ['3D 모델링 · 절차', '캐릭터 · 리깅', '하드서피스 · 실사 렌더링'], hero: 'i446' },
-  { id: 'fx', name: '이펙트 · 연출', desc: '마법 · 입자 · 손맛 · 카메라 · 움직임으로 순간을 극적으로', cats: ['스킬 VFX (마법 · 미사일)', '입자 · 연출', '화려한 효과 (VFX)', '손맛 · 주스', '모션 그래픽', '카메라'], hero: 'i182' },
-  { id: 'game', name: '게임 시스템 · AI', desc: '조작 · 충돌 · 전투 · 컴퓨터 상대 · 입력 · 성능 · 온라인', cats: ['3D 게임 기본기', '게임 AI', '입력', '온라인 대전', '속도 기법', '플랫폼 · 성능', '배움 · 피드백'], hero: 'i484' },
-  { id: 'ui', name: '2D · 화면', desc: '캔버스 그리기 · 2D 움직임과 충돌 · 손그림 느낌 · 화면 맞춤', cats: ['2D 그리기', '2D 움직임 · 충돌', '2D 그림 효과', '2D 의사 3D', '손그림 그림체 (2D)', '그리기 도구', 'CSS · 화면 틀'], hero: 'u61' },
-  { id: 'sim', name: '물리 · 수학 원리', desc: '물리 시뮬레이션 · 구조 설명 · 수학 시각화를 만드는 방법', cats: ['물리 · 시뮬레이션', '원리 설명 · 구조', '수학 시각화 기법'], hero: 'i37' },
-  { id: 'mech', name: '기계 · 구조', desc: '톱니 · 엔진 · 로봇 팔 같은 기계 장치와 분해도 · 조립 · 단면으로 구조를 보여 주는 방법', cats: ['기계 장치', '구조 · 조립'], hero: 'i541' },
-  { id: 'map', name: '지도 · 길찾기', desc: '지도 만들기 · 격자와 좌표 · 길찾기 · 지도 보여 주기', cats: ['지도 생성 (절차)', '격자 · 좌표', '길찾기 · 이동', '지도 보기 · 표현'], hero: 'i245' },
-  { id: 'sound', name: '소리', desc: '파일 없이 코드로 만드는 효과음 · 배경음악 · 공간 소리', cats: ['효과음 (SFX)', '소리'], hero: 'i499' },
-];
-export const domainOf = (cat: string): Domain => DOMAINS.find((d) => d.cats.includes(cat)) ?? DOMAINS[0]!;
+export { DOMAINS, domainOf, type Domain } from './domains';
+import { DOMAINS, domainOf } from './domains';
 const esc = (s: string): string => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
 
 /** 난이도 1 · 2 · 3 (문서 → 없으면 catalog 의 하 · 중 · 상) */
@@ -81,6 +63,17 @@ export function viewHome(main: HTMLElement): () => void {
        <ol class="steps"><li><b>1</b>기술 고르기</li><li><b>2</b>견본 움직여 보기</li><li><b>3</b>「AI 프롬프트 복사」</li></ol>`,
     ),
   );
+  // AI 코딩 도구에 연결 — 사람이 찾지 않아도 AI 가 직접 기술을 검색해 쓰게 (MCP · llms.txt, src/ai · functions/)
+  const MCP_CMD = 'claude mcp add --transport http ai-techstudio https://ai-techstudio.web.app/mcp';
+  const conn = h(
+    'section',
+    'ai-connect',
+    `<div><h3>AI 코딩 도구에 연결하기</h3><p>한 번 연결해 두면 Claude Code 가 게임을 만들다 필요한 기술을 여기서 직접 찾아 읽어요. 기술 이름을 몰라도 「만화처럼 보이게」처럼 말하면 돼요.</p></div>
+     <div class="ai-connect-cmd"><code>${MCP_CMD}</code><button type="button">복사</button></div>
+     <p class="ai-connect-more">Cursor · Codex 등 다른 도구는 MCP 주소 <code>https://ai-techstudio.web.app/mcp</code> 를 등록하거나, <a href="llms.txt" target="_blank" rel="noopener">llms.txt</a> 주소를 알려 주면 돼요.</p>`,
+  );
+  conn.querySelector('button')!.onclick = () => void copyText(MCP_CMD, conn.querySelector('code')!, '명령을 복사했어요 — 터미널에 붙여 넣으세요');
+  main.appendChild(conn);
   main.appendChild(h('h2', 'sec-title', '분류'));
   const doms = h('section', 'cat-tiles');
   for (const d of DOMAINS) {

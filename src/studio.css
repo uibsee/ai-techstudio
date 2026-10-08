@@ -2114,3 +2114,54 @@ pre.code {
   background: currentColor;
   opacity: 0.35;
 }
+
+/* AI 코딩 도구에 연결하기 (홈) */
+.ai-connect {
+  display: grid;
+  gap: 12px;
+  margin: 26px 0 8px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.ai-connect h3 {
+  margin: 0 0 4px;
+  font-size: 16px;
+}
+.ai-connect p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.ai-connect-cmd {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+  min-width: 0;
+}
+.ai-connect-cmd code {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-size: 13px;
+}
+.ai-connect-cmd button {
+  flex: none;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.ai-connect-more code {
+  font-size: 12.5px;
+}
