@@ -26,7 +26,7 @@ const top = h(
   `<div class="top-in">
      <a class="brand" href="#home"><span class="logo">◆</span><b>기술 스튜디오</b></a>
      <div class="top-search"><input placeholder="기술 · 효과 · 게임 이름으로 찾기" aria-label="기술 찾기" /><div class="top-results"></div></div>
-     <nav class="top-links"><a href="#refs">참고 작품</a><a href="#recipes">조합 레시피</a><a class="top-cart" href="#mix" title="여러 기술을 모아 한 장면 주문서로 합치기">내 조합<b>0</b></a><a class="top-ai" href="#connect" title="Claude Code · Codex · Cursor 가 이 사이트의 기술을 직접 찾아 쓰게">AI 연결</a></nav>
+     <nav class="top-links"><a href="#refs">참고 작품</a><a href="#recipes">조합 레시피</a><a class="top-cart" href="#mix" title="여러 기술을 모아 한 장면 주문서로 합치기">내 조합<b>0</b></a><a class="top-ai" href="#connect" title="쓰는 AI 코딩 도구가 이 사이트의 기술을 직접 찾아 쓰게">AI 연결</a></nav>
    </div>`,
 );
 const catbar = h(

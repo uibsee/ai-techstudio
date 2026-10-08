@@ -11,14 +11,19 @@ A library of 380+ web-game techniques (plus 80+ effect examples) (shaders, VFX, 
 
 ## 쓰는 법
 
-### 1. Claude Code — 한 번만 연결
+### 1. 쓰는 AI 코딩 도구에 한 번만 연결
 
-```bash
-claude mcp add --transport http --scope user ai-techstudio https://ai-techstudio.web.app/mcp
-```
+모든 도구가 같은 MCP 서버를 씁니다: `https://ai-techstudio.web.app/mcp` (HTTP · Streamable HTTP)
 
-`--scope user` 를 넣어야 모든 프로젝트에서 쓸 수 있습니다 (빼면 명령을 실행한 폴더에서만).
-확인: `claude mcp list` → `ai-techstudio … ✔ Connected`
+| 도구 | 넣는 곳 | 내용 |
+|---|---|---|
+| Claude Code | 터미널 | `claude mcp add --transport http --scope user ai-techstudio https://ai-techstudio.web.app/mcp` (`--scope user` 를 빼면 그 폴더에서만) |
+| Codex (OpenAI) | 터미널 (`~/.codex/config.toml` 에 들어감) | `codex mcp add ai-techstudio --url https://ai-techstudio.web.app/mcp` — 처음 쓸 때 도구 사용 「허용」 |
+| Cursor | `~/.cursor/mcp.json` · `.cursor/mcp.json` | `{ "mcpServers": { "ai-techstudio": { "url": "https://ai-techstudio.web.app/mcp" } } }` |
+| Gemini CLI | `~/.gemini/settings.json` | `{ "mcpServers": { "ai-techstudio": { "httpUrl": "https://ai-techstudio.web.app/mcp" } } }` |
+| VS Code (Copilot) | `.vscode/mcp.json` | `{ "servers": { "ai-techstudio": { "type": "http", "url": "https://ai-techstudio.web.app/mcp" } } }` |
+| 그 밖의 MCP 도구 | 그 도구의 MCP 서버 설정 | 주소 `https://ai-techstudio.web.app/mcp` |
+| MCP 가 없는 도구 (ChatGPT 등) | 요청할 때 같이 | 「https://ai-techstudio.web.app/llms.txt 를 참고해서 툰 셰이딩을 만들어 줘」 |
 
 ### 2. 그다음엔 평소처럼 말하기
 
@@ -29,20 +34,6 @@ claude mcp add --transport http --scope user ai-techstudio https://ai-techstudio
 - 「적이 장애물을 피해서 쫓아오게 해 줘」
 
 AI 가 이 사이트를 찾아보지 않고 그냥 만들면, 말 끝에 **「ai-techstudio 참고해서」** 를 붙이세요. 사이트에서 본 기술 번호(예: `u01`)를 직접 말해도 됩니다.
-
-### 3. 다른 AI 도구
-
-MCP 서버 주소: `https://ai-techstudio.web.app/mcp`
-
-| 도구 | 설정 파일 | 내용 |
-|---|---|---|
-| Codex (OpenAI) | 터미널 명령 (`~/.codex/config.toml` 에 들어감) | `codex mcp add ai-techstudio --url https://ai-techstudio.web.app/mcp` — 처음 쓸 때 도구 사용 「허용」 |
-| Cursor | `.cursor/mcp.json` · `~/.cursor/mcp.json` | `{ "mcpServers": { "ai-techstudio": { "url": "https://ai-techstudio.web.app/mcp" } } }` |
-| VS Code (Copilot) | `.vscode/mcp.json` | `{ "servers": { "ai-techstudio": { "type": "http", "url": "https://ai-techstudio.web.app/mcp" } } }` |
-| Gemini CLI | `~/.gemini/settings.json` | `{ "mcpServers": { "ai-techstudio": { "httpUrl": "https://ai-techstudio.web.app/mcp" } } }` |
-
-MCP 가 없는 도구(ChatGPT 등)는 요청할 때 주소를 같이 주세요:
-「https://ai-techstudio.web.app/llms.txt 를 참고해서 툰 셰이딩을 만들어 줘」
 
 ### AI 가 받는 것
 
