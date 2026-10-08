@@ -161,7 +161,7 @@ export function serve(req, res) {
   if (req.method === 'GET') {
     // 사람이 주소를 열었을 때 · SSE 를 열려는 클라이언트 — 이 서버는 SSE 를 쓰지 않는다
     if (String(req.headers.accept ?? '').includes('text/event-stream')) return void res.status(405).set('Allow', 'POST').send('');
-    return void res.type('text/plain; charset=utf-8').send(`AI Tech Studio MCP server.\nConnect: claude mcp add --transport http ai-techstudio ${SITE}/mcp\nDocs: ${SITE}/llms.txt\n`);
+    return void res.type('text/plain; charset=utf-8').send(`AI Tech Studio MCP server.\nConnect: claude mcp add --transport http --scope user ai-techstudio ${SITE}/mcp\nDocs: ${SITE}/llms.txt\n`);
   }
   if (req.method === 'DELETE') return void res.status(405).send('');
   if (req.method !== 'POST') return void res.status(405).set('Allow', 'GET, POST').send('');

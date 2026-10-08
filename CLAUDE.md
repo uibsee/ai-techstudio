@@ -15,3 +15,4 @@
   - MCP 서버 = `functions/index.js` (Firebase Functions 2세대, us-central1, Hosting `/mcp` 로 넘김). 도구 search_techniques · get_technique · list_categories · list_recipes · get_recipe. 데이터는 predeploy 가 `public/ai` → `functions/data` 복사. 연결: `claude mcp add --transport http ai-techstudio https://ai-techstudio.web.app/mcp`
   - 전체 배포 `firebase deploy` (함수 + 사이트). 사이트만 `firebase deploy --only hosting`. 함수 이미지 정리 규칙 1일 설정함
   - 로컬 시험: functions/index.js 의 `serve` 를 node http 로 감싸 POST (스크래치 mcpserve.mjs 꼴)
+- 사용법 설명은 세 곳: `README.md` · 사이트 `#connect`(`src/connect.ts`) · llms.txt(`src/ai/exportData.ts`) — 연결 명령을 바꾸면 셋 다

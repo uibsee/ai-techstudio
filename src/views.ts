@@ -4,6 +4,7 @@ import { DOCS, docOf } from './docs/index';
 import { RECIPES } from './docs/recipes';
 import { aiBox, cartButton, checkCard, codeCard, COST, LEVEL, principleCard, relCard } from './docs/techPage';
 import { copyText } from './docs/ui';
+import { connectBox } from './connect';
 import { LABS } from './labs';
 
 /**
@@ -63,17 +64,8 @@ export function viewHome(main: HTMLElement): () => void {
        <ol class="steps"><li><b>1</b>기술 고르기</li><li><b>2</b>견본 움직여 보기</li><li><b>3</b>「AI 프롬프트 복사」</li></ol>`,
     ),
   );
-  // AI 코딩 도구에 연결 — 사람이 찾지 않아도 AI 가 직접 기술을 검색해 쓰게 (MCP · llms.txt, src/ai · functions/)
-  const MCP_CMD = 'claude mcp add --transport http ai-techstudio https://ai-techstudio.web.app/mcp';
-  const conn = h(
-    'section',
-    'ai-connect',
-    `<div><h3>AI 코딩 도구에 연결하기</h3><p>한 번 연결해 두면 Claude Code 가 게임을 만들다 필요한 기술을 여기서 직접 찾아 읽어요. 기술 이름을 몰라도 「만화처럼 보이게」처럼 말하면 돼요.</p></div>
-     <div class="ai-connect-cmd"><code>${MCP_CMD}</code><button type="button">복사</button></div>
-     <p class="ai-connect-more">Cursor · Codex 등 다른 도구는 MCP 주소 <code>https://ai-techstudio.web.app/mcp</code> 를 등록하거나, <a href="llms.txt" target="_blank" rel="noopener">llms.txt</a> 주소를 알려 주면 돼요.</p>`,
-  );
-  conn.querySelector('button')!.onclick = () => void copyText(MCP_CMD, conn.querySelector('code')!, '명령을 복사했어요 — 터미널에 붙여 넣으세요');
-  main.appendChild(conn);
+  // AI 코딩 도구에 연결 — 사람이 찾지 않아도 AI 가 직접 기술을 검색해 쓰게 (connect.ts)
+  main.appendChild(connectBox());
   main.appendChild(h('h2', 'sec-title', '분류'));
   const doms = h('section', 'cat-tiles');
   for (const d of DOMAINS) {

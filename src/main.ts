@@ -3,6 +3,7 @@ import { TECH } from './catalog';
 import { h } from './hub';
 import './studio.css';
 import { viewPlayList } from './playground';
+import { viewConnect } from './connect';
 import { viewCart, viewRecipe, viewRecipes } from './docs/pages';
 import { cartList } from './docs/ui';
 import { DOMAINS, domainOf, viewBrowse, viewGallery, viewHome, viewLab, viewResearch, viewTech } from './views';
@@ -13,7 +14,7 @@ import { DOMAINS, domainOf, viewBrowse, viewGallery, viewHome, viewLab, viewRese
  *
  * 겉틀(2026-10-07, 에셋 스토어처럼): 위 막대(로고 · 검색 · 레시피 · 내 조합) + 분류 한 줄 + 가운데 본문 + 아래 작은 링크.
  * 주소: #home · #all · #d/<분류> · #s/<검색어> · #t/<기술 id> · #fx(효과 모음 — 분류 줄 끝) · #recipes · #recipe/<id> · #mix(내 조합)
- *       (아래 링크만) #labs · #lab/<id> · #research
+ *       (아래 링크만) #labs · #lab/<id> · #research · #connect(AI 연결 안내)
  * 새 기술 = catalog 한 줄 + 견본 하나. 문서는 docs/docs*.ts.
  */
 
@@ -37,7 +38,7 @@ const main = h('main', 'main');
 const foot = h(
   'footer',
   'foot',
-  `<div class="top-in"><span>기술 스튜디오</span><nav><a href="#labs">특별 무대</a><a href="#research">연구 노트</a></nav></div>`,
+  `<div class="top-in"><span>기술 스튜디오</span><nav><a href="#connect">AI 연결 안내</a><a href="#labs">특별 무대</a><a href="#research">연구 노트</a></nav></div>`,
 );
 const scroller = h('div', 'scroller');
 scroller.append(main, foot);
@@ -114,6 +115,7 @@ function route(): void {
   else if (a === 'labs') cleanup = viewPlayList(main);
   else if (a === 'lab' && b) cleanup = viewLab(main, b);
   else if (a === 'research') cleanup = viewResearch(main);
+  else if (a === 'connect') cleanup = viewConnect(main);
   else if (a === 'mix' || a === 'cart') cleanup = viewCart(main);
   else if (a === 'fx') cleanup = viewGallery(main);
   else if (a === 'recipes') cleanup = viewRecipes(main);
