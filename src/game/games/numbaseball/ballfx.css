@@ -1,0 +1,350 @@
+/* 숫자 야구 — 던지기 연출 층 (집중선 · 번쩍 · 만화 글자). stage.ts 가 --cx · --cy(판 가운데) · --fw · --fh 를 넣는다 */
+
+.nb-fx {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* 집중선 — 가운데가 빈 방사형 줄 (만화 효과선) */
+.nb-speed {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: repeating-conic-gradient(from 0deg at var(--cx, 50%) var(--cy, 50%), rgba(255, 255, 255, 0.9) 0deg 0.6deg, rgba(255, 255, 255, 0) 0.6deg 3.1deg, rgba(255, 255, 255, 0.55) 3.1deg 3.5deg, rgba(255, 255, 255, 0) 3.5deg 7deg);
+  -webkit-mask: radial-gradient(ellipse calc(var(--fw, 800px) * 0.36) calc(var(--fh, 600px) * 0.34) at var(--cx, 50%) var(--cy, 50%), transparent 55%, #000 100%);
+  mask: radial-gradient(ellipse calc(var(--fw, 800px) * 0.36) calc(var(--fh, 600px) * 0.34) at var(--cx, 50%) var(--cy, 50%), transparent 55%, #000 100%);
+  transition: opacity 0.25s;
+  mix-blend-mode: screen;
+}
+.nb-speed.on {
+  opacity: 0.45;
+  animation: nb-speed-jitter 0.12s steps(2) infinite;
+}
+.nb-speed.on.burst {
+  opacity: 0.85;
+}
+.nb-speed.on.gold {
+  filter: sepia(1) saturate(4) hue-rotate(-10deg) brightness(1.15);
+}
+@keyframes nb-speed-jitter {
+  0% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* 번쩍 */
+.nb-flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--cx, 50%) var(--cy, 40%), rgba(255, 255, 255, 0.85), rgba(255, 240, 200, 0.25) 45%, rgba(255, 255, 255, 0) 75%);
+  opacity: 0;
+}
+.nb-flash.on {
+  animation: nb-flash 0.42s ease-out;
+}
+.nb-flash.on.strong {
+  animation: nb-flash 0.8s ease-out;
+  background: radial-gradient(circle at var(--cx, 50%) var(--cy, 40%), #fff, rgba(255, 220, 120, 0.6) 50%, rgba(255, 200, 80, 0.15));
+}
+@keyframes nb-flash {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* 만화 글자 — 별 터짐 판 위 굵은 글씨 */
+.nb-comic {
+  --s: min(calc(var(--fw, 800px) * 0.62), calc(var(--fh, 600px) * 0.95), 640px);
+  position: absolute;
+  left: var(--cx, 50%);
+  top: var(--cy, 50%);
+  width: var(--s);
+  height: calc(var(--s) * 0.62);
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  display: grid;
+  place-items: center;
+}
+.nb-comic svg {
+  position: absolute;
+  inset: -10% -4%;
+  width: 108%;
+  height: 120%;
+  overflow: visible;
+  filter: drop-shadow(0 8px 0 rgba(16, 20, 46, 0.85));
+}
+.nb-comic svg polygon {
+  fill: #ffd23a;
+  stroke: #10142e;
+  stroke-width: 5;
+  stroke-linejoin: round;
+}
+.nb-comic svg polygon.in {
+  fill: #ff5a3a;
+  stroke: none;
+}
+.nb-comic b {
+  position: relative;
+  font-family: 'Black Han Sans', 'Dela Gothic One', Pretendard, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: calc(var(--s) * 0.12);
+  line-height: 1.05;
+  text-align: center;
+  max-width: 78%;
+  color: #fff;
+  -webkit-text-stroke: calc(var(--s) * 0.016) #10142e;
+  paint-order: stroke fill;
+  text-shadow: 0 calc(var(--s) * 0.012) 0 #10142e;
+  transform: rotate(-6deg) skewX(-6deg);
+  letter-spacing: 0.01em;
+}
+.nb-comic.hr b {
+  font-size: calc(var(--s) * 0.2);
+  color: #fff6c8;
+}
+.nb-comic.hr svg polygon {
+  fill: #fff2a0;
+}
+.nb-comic.hr svg polygon.in {
+  fill: #ffb21a;
+}
+.nb-comic.out svg polygon {
+  fill: #b8c6e8;
+}
+.nb-comic.out svg polygon.in {
+  fill: #4a5a8e;
+}
+.nb-comic.out b {
+  font-size: calc(var(--s) * 0.18);
+}
+.nb-comic.on {
+  animation: nb-comic-in 0.42s cubic-bezier(0.2, 1.6, 0.4, 1) forwards, nb-comic-wobble 0.9s 0.42s ease-in-out infinite alternate;
+}
+.nb-comic.on svg {
+  animation: nb-comic-spin 6s linear infinite;
+}
+@keyframes nb-comic-in {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(-14deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+@keyframes nb-comic-wobble {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.04) rotate(1.5deg);
+    opacity: 1;
+  }
+}
+@keyframes nb-comic-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 집중선 색 — 필살 투구마다 */
+.nb-speed.on.fire {
+  filter: sepia(1) saturate(6) hue-rotate(-25deg) brightness(1.1);
+}
+.nb-speed.on.bolt {
+  filter: sepia(1) saturate(4) hue-rotate(160deg) brightness(1.2);
+}
+.nb-speed.on.ghost {
+  filter: sepia(1) saturate(5) hue-rotate(220deg) brightness(1.05);
+}
+.nb-speed.on.twist {
+  filter: sepia(1) saturate(5) hue-rotate(125deg) brightness(1.15);
+}
+.nb-speed.on.ult,
+.nb-speed.on.rainbow {
+  opacity: 1;
+  animation: nb-speed-jitter 0.12s steps(2) infinite, nb-rainbow 0.8s linear infinite;
+}
+@keyframes nb-rainbow {
+  0% {
+    filter: sepia(1) saturate(6) hue-rotate(0deg) brightness(1.15);
+  }
+  100% {
+    filter: sepia(1) saturate(6) hue-rotate(360deg) brightness(1.15);
+  }
+}
+
+/* 필살 기술 이름 컷인 — 화면을 비스듬히 가르는 띠 */
+.nb-cutin {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  top: calc(var(--cy, 50%) - var(--fh, 600px) * 0.36);
+  height: clamp(54px, calc(var(--fh, 600px) * 0.17), 130px);
+  display: grid;
+  place-items: center;
+  transform: skewY(-7deg);
+  border-top: 5px solid #10142e;
+  border-bottom: 5px solid #10142e;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.28) 0 2px, transparent 2px 46px),
+    linear-gradient(90deg, var(--c1), var(--c2) 50%, var(--c1));
+  animation: nb-cutin 0.9s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+  box-shadow: 0 0 40px var(--c2);
+}
+.nb-cutin b {
+  font-family: 'Black Han Sans', 'Dela Gothic One', Pretendard, system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(30px, calc(var(--fh, 600px) * 0.11), 84px);
+  color: #fff;
+  -webkit-text-stroke: clamp(4px, calc(var(--fh, 600px) * 0.012), 9px) #10142e;
+  paint-order: stroke fill;
+  text-shadow: 4px 5px 0 #10142e;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  transform: skewX(-10deg);
+  animation: nb-cutin-text 0.9s cubic-bezier(0.2, 0.9, 0.3, 1) forwards;
+}
+.nb-cutin.fire {
+  --c1: #b81e0a;
+  --c2: #ff9a1a;
+}
+.nb-cutin.bolt {
+  --c1: #123a9a;
+  --c2: #6ad0ff;
+}
+.nb-cutin.ghost {
+  --c1: #3a126a;
+  --c2: #b06aff;
+}
+.nb-cutin.twist {
+  --c1: #0a5a6a;
+  --c2: #4af0e0;
+}
+.nb-cutin.ult {
+  --c1: #ff3a7a;
+  --c2: #ffd23a;
+  height: clamp(70px, calc(var(--fh, 600px) * 0.24), 170px);
+  animation-duration: 1.3s;
+  background:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.35) 0 3px, transparent 3px 40px),
+    linear-gradient(90deg, #ff3a5a, #ff9a1a, #ffe23a, #4ae07a, #3ab0ff, #9a5aff, #ff3a9a);
+  background-size: auto, 200% 100%;
+}
+.nb-cutin.ult b {
+  font-size: clamp(36px, calc(var(--fh, 600px) * 0.14), 104px);
+  animation-duration: 1.3s;
+}
+@keyframes nb-cutin {
+  0% {
+    transform: skewY(-7deg) translateX(-110%);
+  }
+  22% {
+    transform: skewY(-7deg) translateX(0);
+  }
+  78% {
+    transform: skewY(-7deg) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: skewY(-7deg) translateX(110%);
+    opacity: 0.6;
+  }
+}
+@keyframes nb-cutin-text {
+  0% {
+    transform: skewX(-10deg) translateX(40%) scale(1.4);
+  }
+  30% {
+    transform: skewX(-10deg) translateX(0) scale(1);
+  }
+  80% {
+    transform: skewX(-10deg) translateX(-4%) scale(1.04);
+  }
+  100% {
+    transform: skewX(-10deg) translateX(-30%) scale(1);
+  }
+}
+
+/* 작은 만화 딱지 — 스트라이크! · 볼! */
+.nb-tag {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: 'Black Han Sans', 'Dela Gothic One', Pretendard, system-ui, sans-serif;
+  font-size: clamp(20px, calc(var(--fh, 600px) * 0.07), 52px);
+  color: #fff;
+  -webkit-text-stroke: 6px #10142e;
+  paint-order: stroke fill;
+  text-shadow: 3px 4px 0 #10142e;
+  white-space: nowrap;
+  animation: nb-tag 1.3s cubic-bezier(0.2, 1.6, 0.4, 1) forwards;
+}
+.nb-tag.S {
+  color: #7aff9a;
+}
+.nb-tag.B {
+  color: #ffd84a;
+  font-size: clamp(16px, calc(var(--fh, 600px) * 0.055), 40px);
+}
+.nb-tag.X {
+  color: #b8c0d8;
+}
+.nb-tag.big {
+  font-size: clamp(26px, calc(var(--fh, 600px) * 0.095), 70px);
+}
+@keyframes nb-tag {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(-12deg);
+    opacity: 0;
+  }
+  25% {
+    transform: translate(-50%, -80%) scale(1.15) rotate(-6deg);
+    opacity: 1;
+  }
+  75% {
+    transform: translate(-50%, -110%) scale(1) rotate(-6deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -150%) scale(0.9) rotate(-6deg);
+    opacity: 0;
+  }
+}
+
+/* 종이 꽃가루 (홈런) */
+.nb-confetti {
+  position: absolute;
+  inset: 0;
+}
+.nb-confetti i {
+  position: absolute;
+  top: -4%;
+  width: 10px;
+  height: 16px;
+  border-radius: 2px;
+  animation-name: nb-fall;
+  animation-timing-function: cubic-bezier(0.3, 0.2, 0.6, 1);
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+@keyframes nb-fall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), 110vh) rotate(var(--r));
+    opacity: 1;
+  }
+}

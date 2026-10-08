@@ -1,0 +1,4 @@
+Poly Haven (https://polyhaven.com) — CC0 1.0 (퍼블릭 도메인, 출처 표시 의무 없음)
+- metal_plate, castle_brick_07, rock_tile_floor, worn_planks : 텍스처 1k jpg (diff 색 · nor_gl 법선(OpenGL) · arm = AO/거칠기/금속)
+- studio_small_09 : HDRI 1k (.hdr)
+2026-10-07 내려받음. 기술 스튜디오(개발용) 견본 전용.
