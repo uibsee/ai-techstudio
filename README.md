@@ -36,6 +36,7 @@ MCP 서버 주소: `https://ai-techstudio.web.app/mcp`
 
 | 도구 | 설정 파일 | 내용 |
 |---|---|---|
+| Codex (OpenAI) | 터미널 명령 (`~/.codex/config.toml` 에 들어감) | `codex mcp add ai-techstudio --url https://ai-techstudio.web.app/mcp` — 처음 쓸 때 도구 사용 「허용」 |
 | Cursor | `.cursor/mcp.json` · `~/.cursor/mcp.json` | `{ "mcpServers": { "ai-techstudio": { "url": "https://ai-techstudio.web.app/mcp" } } }` |
 | VS Code (Copilot) | `.vscode/mcp.json` | `{ "servers": { "ai-techstudio": { "type": "http", "url": "https://ai-techstudio.web.app/mcp" } } }` |
 | Gemini CLI | `~/.gemini/settings.json` | `{ "mcpServers": { "ai-techstudio": { "httpUrl": "https://ai-techstudio.web.app/mcp" } } }` |
@@ -78,7 +79,8 @@ firebase deploy      # 사이트 + MCP 서버 (사이트만: --only hosting)
 | `src/ai/exportData.ts` · `scripts/export-ai.mjs` | AI 용 글 생성 (`public/llms.txt` · `public/ai/` — 생성물이라 git 제외) |
 | `functions/index.js` | MCP 서버 (Firebase Functions, Hosting `/mcp`) |
 | `src/connect.ts` | 사이트의 「AI 연결 안내」 — 명령을 바꾸면 이 README 와 `src/ai/exportData.ts` 도 함께 |
-| `src/game/` | 수학 놀이터 게임에서 가져온 코드 복사본 (견본 · 특별 무대가 씀) |
+| `src/game/` | 수학 놀이터 게임에서 가져온 코드 복사본 (툰 · 동화책 물 · 주사위 — 견본이 씀) |
+| `src/refs.ts` · `src/refPreviews.ts` | 참고 작품 쪽 — 미리보기 그림 주소는 `node scripts/fetch-ref-previews.mjs` 로 (각 사이트가 공개한 og:image) |
 
 ## 라이선스
 

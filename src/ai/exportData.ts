@@ -179,7 +179,7 @@ export async function buildAiFiles(): Promise<Record<string, string>> {
     `- Search: fetch ${SITE}/ai/index.json (fields: id, name, en[], summary, domain, category, dim, level, cost, platforms, variants, related, md). Match the user's goal against \`name\`, \`en\`, \`summary\`.`,
     `- Read: fetch ${SITE}/ai/t/<id>.md — section 「주문서」 is the spec to implement, 「완성 기준」 is the acceptance checklist, 「견본 실제 코드」 is working reference code.`,
     `- Combine: scene recipes that stack several techniques are at ${SITE}/ai/recipes/<id>.md.`,
-    `- MCP: \`claude mcp add --transport http --scope user ai-techstudio ${SITE}/mcp\` (Claude Code; other tools: MCP server URL ${SITE}/mcp) gives tools search_techniques · get_technique · list_categories · list_recipes · get_recipe.`,
+    `- MCP: \`claude mcp add --transport http --scope user ai-techstudio ${SITE}/mcp\` (Claude Code; Codex: \`codex mcp add ai-techstudio --url ${SITE}/mcp\`; other tools: MCP server URL ${SITE}/mcp) gives tools search_techniques · get_technique · list_categories · list_recipes · get_recipe.`,
     `- Setup guide for people: ${SITE}/#connect`,
     '- Adapt the reference code to the user\'s project; do not copy studio-only scaffolding (demo frame, control sliders).',
     '',

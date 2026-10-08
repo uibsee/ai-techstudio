@@ -4,10 +4,11 @@
 수학 놀이터(`../19_Mathgame_web`, 예전 `src/studio/` · `studio.html`)에서 2026-10-08 따로 떼어 냄.
 
 - **배포 = Firebase Hosting `ai-techstudio` → https://ai-techstudio.web.app** (`npm run build && firebase deploy --only hosting`). 사용자가 「배포해」 할 때만. 라이선스 문구는 `public/licenses/`(airsup MIT · polyhaven CC0 · 용 CC0)
-- 실행 `npm run dev` → http://localhost:5180/ (`#home` · `#all` · `#d/<분류>` · `#t/<기술 id>` · `#fx` · `#recipes` · `#mix` · `#labs` · `#lab/<id>` · `#research`)
+- 실행 `npm run dev` → http://localhost:5180/ (`#home` · `#all` · `#d/<분류>` · `#t/<기술 id>` · `#fx` · `#recipes` · `#mix` · `#refs` 참고 작품 · `#connect` AI 연결 · `#research`)
 - 이어서 할 일 · 진행 기록: `docs/progress.md`, 문서 쓰는 법 `docs/doc-writing-guide.md`
-- 구조: `src/main.ts` 겉틀 · `catalog.ts` 기술 목록 · `curation.ts` 고르기 · `views.ts` 화면 · `hub.ts` 견본 엔진 · `labs.ts` 특별 무대 · `demos/demos*.ts` 견본 · `docs/docs*.ts` 문서. **새 기술 = catalog 한 줄 + 견본 하나.**
-- `src/game/` · `src/services/artSlots.ts` · `src/assets/games/` = 수학 놀이터 게임 코드 **복사본**(2026-10-08). 견본 · 특별 무대가 쓴다(툰 · 동화책 물 · 주사위 · 숫자 야구 무대 · 주차장 무대 · 용 모델). 게임 쪽이 바뀌어도 저절로 따라오지 않는다 — 필요하면 다시 복사. `src/i18n/index.ts` 는 한국어 그대로 돌려주는 대역.
+- 구조: `src/main.ts` 겉틀 · `catalog.ts` 기술 목록 · `curation.ts` 고르기 · `views.ts` 화면 · `hub.ts` 견본 엔진 · `refs.ts` 참고 작품 · `connect.ts` AI 연결 안내 · `demos/demos*.ts` 견본 · `docs/docs*.ts` 문서. **새 기술 = catalog 한 줄 + 견본 하나.**
+- `src/game/` · `src/assets/games/` = 수학 놀이터 게임 코드 **복사본**(2026-10-08) — 견본이 쓰는 것만 남김(툰 toon.ts · 동화책 물 storybook.ts · 주사위 dice3d.ts · 숫자 야구 ballfx.css · 용 모델). 게임 쪽이 바뀌어도 저절로 따라오지 않는다.
+- 특별 무대(#labs — 주차장 · 숫자 야구 실제 무대)는 2026-10-09 사용자 결정으로 뺐다. 위 오른쪽 = 참고 작품 · 조합 레시피 · 내 조합 · **AI 연결**(단추)
 - 게임 이름표 `src/gameTitles.ts`(manifest 에서 뽑아 굳힘) · 게임 사진 `src/shots/<게임 id>.jpg`. 「이 기술을 쓴 게임」 단추는 mathmiri.com 을 연다.
 - 예전 「실전 무대」(게임을 같은 출처 iframe 으로 띄워 조절판 걸기)는 분리하면서 뺐다. 게임 쪽 `src/game/core/devThree.ts` 는 수학 놀이터에 남아 있다.
 - **AI 가 직접 쓰는 길 (2026-10-08)**: 사람용 화면은 자바스크립트로 그려 AI 도구가 못 읽는다 → 같은 데이터를 글로.

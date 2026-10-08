@@ -2,11 +2,11 @@ import '@/game/games/numbaseball/ballfx.css';
 import { TECH } from './catalog';
 import { h } from './hub';
 import './studio.css';
-import { viewPlayList } from './playground';
+import { viewRefs } from './refs';
 import { viewConnect } from './connect';
 import { viewCart, viewRecipe, viewRecipes } from './docs/pages';
 import { cartList } from './docs/ui';
-import { DOMAINS, domainOf, viewBrowse, viewGallery, viewHome, viewLab, viewResearch, viewTech } from './views';
+import { DOMAINS, domainOf, viewBrowse, viewGallery, viewHome, viewResearch, viewTech } from './views';
 
 /**
  * 기술 스튜디오 — 게임 그래픽 · 연출 · 시스템 기술을 움직이는 견본으로 보고, AI 에게 줄 주문서로 가져가는 페이지.
@@ -14,7 +14,7 @@ import { DOMAINS, domainOf, viewBrowse, viewGallery, viewHome, viewLab, viewRese
  *
  * 겉틀(2026-10-07, 에셋 스토어처럼): 위 막대(로고 · 검색 · 레시피 · 내 조합) + 분류 한 줄 + 가운데 본문 + 아래 작은 링크.
  * 주소: #home · #all · #d/<분류> · #s/<검색어> · #t/<기술 id> · #fx(효과 모음 — 분류 줄 끝) · #recipes · #recipe/<id> · #mix(내 조합)
- *       (아래 링크만) #labs · #lab/<id> · #research · #connect(AI 연결 안내)
+ *       #refs(참고 작품) · #connect(AI 연결 안내) — 위 오른쪽 · (아래 링크만) #research
  * 새 기술 = catalog 한 줄 + 견본 하나. 문서는 docs/docs*.ts.
  */
 
@@ -26,7 +26,7 @@ const top = h(
   `<div class="top-in">
      <a class="brand" href="#home"><span class="logo">◆</span><b>기술 스튜디오</b></a>
      <div class="top-search"><input placeholder="기술 · 효과 · 게임 이름으로 찾기" aria-label="기술 찾기" /><div class="top-results"></div></div>
-     <nav class="top-links"><a href="#recipes">조합 레시피</a><a class="top-cart" href="#mix" title="여러 기술을 모아 한 장면 주문서로 합치기">내 조합<b>0</b></a></nav>
+     <nav class="top-links"><a href="#refs">참고 작품</a><a href="#recipes">조합 레시피</a><a class="top-cart" href="#mix" title="여러 기술을 모아 한 장면 주문서로 합치기">내 조합<b>0</b></a><a class="top-ai" href="#connect" title="Claude Code · Codex · Cursor 가 이 사이트의 기술을 직접 찾아 쓰게">AI 연결</a></nav>
    </div>`,
 );
 const catbar = h(
@@ -38,7 +38,7 @@ const main = h('main', 'main');
 const foot = h(
   'footer',
   'foot',
-  `<div class="top-in"><span>기술 스튜디오</span><nav><a href="#connect">AI 연결 안내</a><a href="#labs">특별 무대</a><a href="#research">연구 노트</a><a href="https://github.com/uibsee/ai-techstudio" target="_blank" rel="noopener">GitHub</a></nav></div>`,
+  `<div class="top-in"><span>기술 스튜디오</span><nav><a href="#refs">참고 작품</a><a href="#research">연구 노트</a><a href="https://github.com/uibsee/ai-techstudio" target="_blank" rel="noopener">GitHub</a></nav></div>`,
 );
 const scroller = h('div', 'scroller');
 scroller.append(main, foot);
@@ -112,8 +112,7 @@ function route(): void {
   else if (a === 's') cleanup = viewBrowse(main, null, decodeURIComponent(b));
   else if (a === 'd' && b) cleanup = viewBrowse(main, b);
   else if (a === 't' && b) cleanup = viewTech(main, b);
-  else if (a === 'labs') cleanup = viewPlayList(main);
-  else if (a === 'lab' && b) cleanup = viewLab(main, b);
+  else if (a === 'refs') cleanup = viewRefs(main);
   else if (a === 'research') cleanup = viewResearch(main);
   else if (a === 'connect') cleanup = viewConnect(main);
   else if (a === 'mix' || a === 'cart') cleanup = viewCart(main);

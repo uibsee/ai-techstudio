@@ -28,7 +28,7 @@ export function connectBox(): HTMLElement {
     `<div><h3>AI 코딩 도구에 연결하기</h3><p>Claude Code 터미널에 아래 명령을 <b>한 번만</b> 붙여 넣으세요. 그다음엔 평소처럼 「캐릭터를 만화처럼 보이게 해 줘」라고 말하면, AI 가 여기서 맞는 기술을 찾아 읽고 만들어요.</p></div>`,
   );
   sec.appendChild(cmdBox(MCP_CMD, '명령을 복사했어요 — 터미널에 붙여 넣으세요'));
-  sec.appendChild(h('p', 'ai-connect-more', `Cursor · VS Code · Gemini 같은 다른 도구 설정법과 쓰는 요령은 <a href="#connect">연결 안내</a>에서.`));
+  sec.appendChild(h('p', 'ai-connect-more', `Codex · Cursor · VS Code · Gemini 같은 다른 도구 설정법과 쓰는 요령은 <a href="#connect">연결 안내</a>에서.`));
   return sec;
 }
 
@@ -63,6 +63,7 @@ export function viewConnect(main: HTMLElement): () => void {
 
   const s3 = step('3', '다른 AI 도구', `<p>MCP 를 지원하는 도구는 설정에 서버 주소 <code>${MCP_URL}</code> 를 넣으면 돼요.</p>`);
   const tools: [string, string, string][] = [
+    ['Codex (OpenAI)', '터미널 명령 한 줄 — ~/.codex/config.toml 에 들어가요. 처음 쓸 때 도구 사용 「허용」을 눌러 주세요', `codex mcp add ai-techstudio --url ${MCP_URL}`],
     ['Cursor', '.cursor/mcp.json (프로젝트) 또는 ~/.cursor/mcp.json (전체)', `{\n  "mcpServers": {\n    "ai-techstudio": { "url": "${MCP_URL}" }\n  }\n}`],
     ['VS Code (Copilot)', '.vscode/mcp.json', `{\n  "servers": {\n    "ai-techstudio": { "type": "http", "url": "${MCP_URL}" }\n  }\n}`],
     ['Gemini CLI', '~/.gemini/settings.json', `{\n  "mcpServers": {\n    "ai-techstudio": { "httpUrl": "${MCP_URL}" }\n  }\n}`],

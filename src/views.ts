@@ -4,8 +4,6 @@ import { DOCS, docOf } from './docs/index';
 import { RECIPES } from './docs/recipes';
 import { aiBox, cartButton, checkCard, codeCard, COST, LEVEL, principleCard, relCard } from './docs/techPage';
 import { copyText } from './docs/ui';
-import { connectBox } from './connect';
-import { LABS } from './labs';
 
 /**
  * 스튜디오 화면들 — 에셋 스토어처럼 단순하게 (2026-10-07 다시).
@@ -64,8 +62,6 @@ export function viewHome(main: HTMLElement): () => void {
        <ol class="steps"><li><b>1</b>기술 고르기</li><li><b>2</b>견본 움직여 보기</li><li><b>3</b>「AI 프롬프트 복사」</li></ol>`,
     ),
   );
-  // AI 코딩 도구에 연결 — 사람이 찾지 않아도 AI 가 직접 기술을 검색해 쓰게 (connect.ts)
-  main.appendChild(connectBox());
   main.appendChild(h('h2', 'sec-title', '분류'));
   const doms = h('section', 'cat-tiles');
   for (const d of DOMAINS) {
@@ -340,24 +336,6 @@ export function viewTech(main: HTMLElement, id: string): () => void {
   return () => hub.dispose();
 }
 
-/* ───────────── 실전 무대 · 연구 노트 (아래 작은 링크로만) ───────────── */
-
-export function viewLab(main: HTMLElement, id: string): () => void {
-  const l = LABS.find((x) => x.id === id) ?? LABS[0]!;
-  main.insertAdjacentHTML(
-    'beforeend',
-    `<div class="crumbs"><a href="#home">홈</a><span>›</span><a href="#labs">특별 무대</a><span>›</span>${l.title}</div>
-     <header class="page-head"><h1>${l.title}</h1><p>${l.sub}</p>
-     <div class="chips">${(l.techs ?? []).map((t) => `<a class="chip" href="#t/${t}">${esc(TECH.find((x) => x.id === t)?.name ?? t)} →</a>`).join('')}</div></header>
-     ${l.notes.length ? `<ul class="notes">${l.notes.map((n) => `<li>${n}</li>`).join('')}</ul>` : ''}`,
-  );
-  const box = h('div', 'lab-box');
-  main.appendChild(box);
-  const c = l.mount?.(box);
-  return () => {
-    if (c) c();
-  };
-}
 /* ───────────── 효과 갤러리 — 「무엇을 만들 수 있나」 (기술 목록은 「어떻게 만드나」) ───────────── */
 
 /** 볼거리 묶음: 분류 이름 → 갤러리 칸. 효과 모음(변형)은 모두 들어가고, 기술 중에서도 결과가 곧 볼거리인 분류는 함께 */
@@ -427,8 +405,7 @@ export function viewResearch(main: HTMLElement): () => void {
     `<div class="crumbs"><a href="#home">홈</a><span>›</span>연구 노트</div><header class="page-head"><h1>연구 노트</h1><p>원리 설명형 웹 체험 · 화려한 효과를 조사한 결과예요.</p></header>
      <h2 class="sec-title">원리 체험 아이디어 <small>${LAB_IDEAS.length}</small></h2>
      <section class="ideas">${LAB_IDEAS.map((x) => `<div class="idea-card"><h3>${x.name}</h3><p>${x.math}</p><small>필요한 기술 — ${x.needs}</small></div>`).join('')}</section>
-     <h2 class="sec-title">참고 작품 <small>${REFS.length}</small></h2>
-     <section class="refs">${REFS.map((x) => `<a class="ref" href="${x.url}" target="_blank" rel="noopener"><h3>${esc(x.name)}</h3><p>${esc(x.what)}</p><span>${esc(x.url.replace(/^https?:[/][/]/, ''))}</span></a>`).join('')}</section>`,
+     <p class="more-link"><a href="#refs">참고 작품 ${REFS.length}개는 「참고 작품」에서 그림과 함께 →</a></p>`,
   );
   return () => {};
 }
