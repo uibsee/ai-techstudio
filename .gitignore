@@ -4,3 +4,4 @@ dist/
 .env
 .claude/
 .DS_Store
+.firebase/

@@ -3,6 +3,7 @@
 게임에 쓴 그래픽 · 연출 · 시스템 기술을 움직이는 견본으로 보고, 조절하고, AI 에게 줄 주문서로 가져가는 사이트. 사용자와는 늘 **한국어**로.
 수학 놀이터(`../19_Mathgame_web`, 예전 `src/studio/` · `studio.html`)에서 2026-10-08 따로 떼어 냄.
 
+- **배포 = Firebase Hosting `ai-techstudio` → https://ai-techstudio.web.app** (`npm run build && firebase deploy --only hosting`). 사용자가 「배포해」 할 때만. 라이선스 문구는 `public/licenses/`(airsup MIT · polyhaven CC0 · 용 CC0)
 - 실행 `npm run dev` → http://localhost:5180/ (`#home` · `#all` · `#d/<분류>` · `#t/<기술 id>` · `#fx` · `#recipes` · `#mix` · `#labs` · `#lab/<id>` · `#research`)
 - 이어서 할 일 · 진행 기록: `docs/progress.md`, 문서 쓰는 법 `docs/doc-writing-guide.md`
 - 구조: `src/main.ts` 겉틀 · `catalog.ts` 기술 목록 · `curation.ts` 고르기 · `views.ts` 화면 · `hub.ts` 견본 엔진 · `labs.ts` 특별 무대 · `demos/demos*.ts` 견본 · `docs/docs*.ts` 문서. **새 기술 = catalog 한 줄 + 견본 하나.**
