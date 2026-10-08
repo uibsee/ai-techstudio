@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "description": "기술 스튜디오 — 게임 그래픽 · 연출 · 시스템 기술 견본과 주문서",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "node scripts/export-ai.mjs && tsc --noEmit && vite build",

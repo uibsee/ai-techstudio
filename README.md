@@ -80,4 +80,15 @@ firebase deploy      # 사이트 + MCP 서버 (사이트만: --only hosting)
 | `src/connect.ts` | 사이트의 「AI 연결 안내」 — 명령을 바꾸면 이 README 와 `src/ai/exportData.ts` 도 함께 |
 | `src/game/` | 수학 놀이터 게임에서 가져온 코드 복사본 (견본 · 특별 무대가 씀) |
 
-라이선스 문구: `public/licenses/` (airsup 코드 MIT · Poly Haven 텍스처 CC0 · 용 모델 CC0)
+## 라이선스
+
+이 저장소의 코드와 문서는 **[MIT](LICENSE)** 입니다 — 견본 코드 · 주문서를 자기 게임에 자유롭게 가져다 쓰세요.
+
+다른 곳에서 온 자료는 각자의 조건을 따릅니다 (`public/licenses/`):
+
+| 자료 | 위치 | 조건 |
+|---|---|---|
+| airsup-lab 코드 | `src/vendor/airsup/` | MIT (원 저작자 표시 유지) |
+| Poly Haven 텍스처 · HDRI | `src/assets/polyhaven/` | CC0 |
+| 용 모델 (Quaternius) | `src/assets/games/fakecoin/dragon.glb` | CC0 |
+| 원혼 픽셀 그림 | `src/assets/pixelghost/` | 견본 시연용으로 허락받아 쓴 그림 — MIT 에 포함되지 않음 |
