@@ -3,6 +3,16 @@
 개발용 페이지. **배포에 안 들어간다**(vite 빌드는 index.html 만 묶음). 개발 서버 `http://localhost:5173/studio.html`.
 구조 · 규칙은 CLAUDE.md 「기술 스튜디오」 절. 새 기술 = `src/studio/catalog.ts` 한 줄 + `src/studio/demos/demos*.ts` 견본 하나 (규격 `demos/types.ts`, 견본 파일은 `import.meta.glob` 으로 저절로 모임).
 
+## 2026-10-09 — 블렌더 없이 사진 같은 렌더 (i545 ~ i547)
+- 계기: 사용자의 유튜브 「도구와 기계의 원리」 제작(`C:\Work\01_YouTube\02_도구와 기계의 원리\web` — three-gpu-pathtracer + oidn-web + puppeteer · ffmpeg)이 블렌더 없이 고화질로 나옴 → 스튜디오에 없던 기술 셋 추가
+- i545 GPU 경로 추적 · i546 노이즈 제거(à-trous, 실제는 OIDN) · i547 경로 추적 영상 굽기(프레임마다 수렴 → 찍기, 셔터 시간 모션 블러). 분류 「하드서피스 · 실사 렌더링」
+- 견본 `demos/demosPathTrace.ts` + 공용 `demos/lib/pathtrace.ts` — 견본 규칙(라이브러리 추가 금지) 때문에 셰이더 하나로 짠 작은 경로 추적기(수식 도형 · 스튜디오 띠 조명 · HalfFloat 핑퐁). 844×475 한 샘플 0.9ms(라데온 780M). 문서 `docs/docsPathTrace.ts` — 주문서는 실제 라이브러리를 쓰라고 platformHints.three 에 「예외」를 적음
+- 겪은 것: GLSL 한 줄 주석이 같은 줄 `any = true` 를 삼켜 바닥이 사라짐 · smoothstep 경계를 거꾸로 주면 D3D 에서 0 · 색(RGB) 무게 à-trous 는 적은 샘플에서 반짝이를 못 거름(톤 누른 밝기로) · 배경 픽셀 법선 0 → 0/0 검정 · 자동 시험 탭이 숨겨지면 rAF 가 거의 멈춰 「느리다」로 착각
+- 조합 레시피 `mech-explainer-video` 「블렌더 없이 기계 원리 영상」(recipes.ts 맨 앞): i450 회전체 · i449 스윕 · i85 단면 · i42 프레넬 · i84 마모 재질 · i37 기구학 · i38 이름표 → i545 · i546 · i547. 영상 페이지 코드에서 실제 쓴 방법과 짝지음
+- 문서 잇기: i545 prev = i450 · i449 · i85 · i84 · u04, i547 next = i38 · i79, 반대로 i450 · i449 · i84 next 에 i545
+- 남은 것: 카드 크기 i547 은 아래쪽이 비어 보임(24장 다 굽기 전) 
+- 영상 만들기 기술 i81 내레이션 동기화 · i82 영상으로 굽기 · i89 감독 투어를 되살림(사용자 결정 — curation REMOVE 에서 뺌, i82 · i89 는 「원리 설명 · 구조」로 옮김, EXTRA_EN 영어 용어) → 레시피 13개 기술: … i38 → i89 → i81 → i82(콘티 영상) → i545 → i546 → i547. 셋 다 정리된 문서는 아직 없음(기본 문서)
+
 ## 커밋된 것
 (ce910bb — 2D 58개 · 게임 AI 20개 i340~359)
 

@@ -1016,7 +1016,7 @@ roughnessFactor = clamp(roughnessFactor * (1.0 + (surfN2 - 0.5) * uDetail.y * 2.
       { title: '마모를 세게 하면 「더러운」 그림이 된다', fix: '견본 색 차이는 0.05 처럼 작게. 거칠기 얼룩이 먼저, 색 얼룩은 아주 조금.' },
     ],
     prev: ['u08', 'u10'],
-    next: ['i229'],
+    next: ['i229', 'i545'],
     refs: [{ name: 'AirsupHQ/airsup-lab (원본 저장소, MIT)', url: 'https://github.com/AirsupHQ/airsup-lab' }],
     source: [{ file: 'demosAirsup.ts', symbol: 'wearMats' }],
   },

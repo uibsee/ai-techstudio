@@ -907,7 +907,7 @@ for (const e of elist) {
       { title: '끝이 뚫려 안이 보인다', fix: '시작 끝에 가운데 점 하나 + 부채꼴 삼각형으로 뚜껑을 만든다. 가늘어지는 끝은 굵기를 0 가까이.' },
     ],
     prev: ['i450'],
-    next: ['i450', 'i468'],
+    next: ['i450', 'i468', 'i545'],
     refs: [
       { name: 'three.js 문서 — TubeGeometry', url: 'https://threejs.org/docs/#api/en/geometries/TubeGeometry' },
     ],
@@ -998,7 +998,7 @@ const mesh = new THREE.Mesh(geo, new THREE.MeshPhysicalMaterial({ vertexColors: 
       { title: 'LatheGeometry 는 정점 순서가 (둘레 i, 윤곽 j) 라 색 배열 순서를 틀리기 쉽다', fix: '색 인덱스는 (i × 윤곽 점 수 + j). 둘레는 segs + 1 줄이다.' },
     ],
     prev: ['i449'],
-    next: ['i449', 'i468'],
+    next: ['i449', 'i468', 'i545'],
     refs: [
       { name: 'three.js 문서 — LatheGeometry', url: 'https://threejs.org/docs/#api/en/geometries/LatheGeometry' },
     ],

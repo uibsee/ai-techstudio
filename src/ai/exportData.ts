@@ -38,6 +38,9 @@ const EXTRA_EN: Record<string, string[]> = {
   i542: ['Industrial robot arm', 'Analytic inverse kinematics (IK)', 'Hydraulic cylinder', 'Pick and place'],
   i543: ['Turbofan jet engine cutaway', 'Twisted blade (airfoil) geometry', 'Compressor / turbine stages'],
   i544: ['Excavator', 'Tank tread (track links)', 'Hydraulic cylinder', 'Four-bar linkage'],
+  i81: ['Narration sync (word-level timestamps)', 'Text-to-speech timeline', 'Subtitle timing', 'speechSynthesis boundary event'],
+  i82: ['Render to video (headless browser to mp4)', 'Deterministic frame-by-frame capture', 'Puppeteer screenshot', 'ffmpeg image2pipe'],
+  i89: ['Camera director tour (scripted shots)', 'Frame-by-frame recording', 'Playwright + ffmpeg', 'Cinematic camera path'],
   i469: ['Mechanical assembly', 'Parts assembled to dimensions', 'Screw / bolt tightening animation', 'Exploded view'],
 };
 const enOf = (t: Tech, d: TechDoc): string[] => {
