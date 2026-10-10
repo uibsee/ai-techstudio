@@ -21,6 +21,7 @@ export const REF_PREVIEW: Record<string, string> = {
   "https://github.com/Tarquished/motioner": "https://opengraph.githubassets.com/0a627288b50a51e9a152b46a125eca02bf5fd3a1d3dbc2996b80446ed3d407b4/Tarquished/motioner",
   "https://charliehills.substack.com/p/claude-code-motion-graphics": "https://substackcdn.com/image/fetch/$s_!OVRs!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fafc04e64-e7dc-4fc7-8794-48084d693381_896x640.gif",
   "https://github.com/yihui-dev/awesome-opus5-5-videos": "https://opengraph.githubassets.com/6b9f1d201157b4568b4a35daa3b5bc8de06749172a11253a9be12948b3e416d0/yihui-dev/awesome-opus5-5-videos",
+  "https://prompt-motion.com": "https://prompt-motion.com/opengraph-image.png?opengraph-image.2gf6gr-qminy7.png",
   "https://github.com/KilledByAPixel/ZzFX": "https://repository-images.githubusercontent.com/178907954/8106939f-b0c4-4e38-8d50-ad3bdf680505",
   "https://sfxr.me": "https://sfxr.me/header.png",
   "https://github.com/goldfire/howler.js": "https://opengraph.githubassets.com/9dddc4df78da0541b4f6788cd2cfa53629775cd37d7cc675e682907773d3fb44/goldfire/howler.js",

@@ -13,7 +13,7 @@
  */
 
 /** 만들 곳 — 칩으로 고른다. 문서마다 맞는 것만 platforms 에 */
-export type PlatformId = 'three' | 'canvas' | 'webaudio' | 'web' | 'unity' | 'godot';
+export type PlatformId = 'three' | 'canvas' | 'dom' | 'webaudio' | 'web' | 'unity' | 'godot';
 
 /** 폰 부담 — light: 폰 OK · medium: 주의 · heavy: 무거움 */
 export type Cost = 'light' | 'medium' | 'heavy';

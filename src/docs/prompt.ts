@@ -15,6 +15,7 @@ export interface PlatformInfo {
 export const PLATFORMS: Record<PlatformId, PlatformInfo> = {
   three: { label: '웹 · three.js', env: 'three.js r186 (ES 모듈 · TypeScript, `import * as THREE from "three"`), WebGL2, 외부 라이브러리 추가 없이', screen: '브라우저 — PC 와 폰(가로 844×390 · 세로 390×844) 모두, 60fps 목표' },
   canvas: { label: '웹 · 캔버스 2D', env: 'HTML Canvas 2D (TypeScript), requestAnimationFrame 루프, 라이브러리 없이', screen: '브라우저 — PC 와 폰(390px 폭) 모두, devicePixelRatio 맞춰 또렷하게, 60fps 목표' },
+  dom: { label: '웹 · HTML/CSS', env: 'TypeScript + HTML · CSS · SVG (DOM), 라이브러리 없이 — 움직임은 transform · opacity 로', screen: '브라우저 — PC 와 폰(390px 폭) 모두, 60fps 목표' },
   webaudio: { label: '웹 · Web Audio', env: 'Web Audio API (TypeScript) — 소리 파일 없이 OscillatorNode · GainNode · BiquadFilterNode 로 합성', screen: '브라우저 — PC · 폰 모두 (폰은 첫 터치 뒤에만 소리가 난다)' },
   web: { label: '웹 · TypeScript', env: 'TypeScript (브라우저), 라이브러리 없이 — 화면과 떨어진 순수 함수로', screen: '브라우저 — PC · 폰 모두' },
   unity: { label: 'Unity', env: 'Unity 6 (URP), C#', screen: 'PC · 모바일 빌드, 60fps 목표' },

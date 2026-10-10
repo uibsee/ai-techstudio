@@ -38,7 +38,7 @@
 | `terms` | 2~4개. 첫 번째 = **AI 가 가장 잘 알아듣는 영어 표준 용어** (예: `Toon shading (cel shading)`). three.js 클래스 이름 · 방법 이름도 여기에. `ko` 는 한 줄 풀이 |
 | `goal` | 주문서 첫 문장. `{target}` · `{style}` 자리표시를 넣는다. 조사는 `{target}을(를)` · `이(가)` · `은(는)` · `과(와)` 로 쓰면 받침에 맞게 바뀐다 |
 | `targets` · `styles` | 칩 후보 3개씩. 첫 번째가 기본값 — 견본과 같은 것을 첫 번째로 |
-| `platforms` | 맞는 것만, 첫 번째가 원래 기준. 3D → `three` · 2D → `canvas` · 소리 → `webaudio` · 순수 계산 → `web`, 그다음 `unity` · `godot` |
+| `platforms` | 맞는 것만, 첫 번째가 원래 기준. 3D → `three` · 2D → `canvas` · HTML · CSS 화면 움직임 → `dom` · 소리 → `webaudio` · 순수 계산 → `web`, 그다음 `unity` · `godot` |
 | `platformHints` | 다른 엔진에서의 **실제** 대응 기능 이름 한 줄 (모르면 비운다. 지어내지 않는다) |
 | `principle` | 3~5줄. 초등 고학년도 따라올 말로, 식이 핵심이면 식 한 줄 |
 | `when` · `avoid` | 2~3개씩. avoid 는 「대신 무엇을 쓰나」까지 |

@@ -3,6 +3,20 @@
 개발용 페이지. **배포에 안 들어간다**(vite 빌드는 index.html 만 묶음). 개발 서버 `http://localhost:5173/studio.html`.
 구조 · 규칙은 CLAUDE.md 「기술 스튜디오」 절. 새 기술 = `src/studio/catalog.ts` 한 줄 + `src/studio/demos/demos*.ts` 견본 하나 (규격 `demos/types.ts`, 견본 파일은 `import.meta.glob` 으로 저절로 모임).
 
+## 2026-10-10 — 입자 글자 · 음악 반응 · 사진 시차 · 폰 목업 (i556 ~ i559) + 레시피 「게임 소개 영상 30초」
+- 아래 묶음의 「다음 후보」를 이어서 (사용자 「더 채우고 배포하자」). 견본 `demos/demosMotionE.ts`, 문서 `docs/docsMotionE.ts`, 레시피 `game-promo-30s`(recipes.ts, 대표 견본 i559)
+- i556 2D 입자 글자 (숨은 캔버스 getImageData → 점 자리, 간격 = √(넓이/n) 로 글자마다 점 수 맞춤, 스프링) · i557 음악 반응 (OfflineAudioContext 로 4초 음악 합성 → 괴르첼로 32띠 표 미리 계산 → 저 · 중 · 고 엔벨로프 · 박 flux. 소리 켜면 같은 표를 재생 시계로 읽음) · i558 사진 2.5D 시차 (three 평면 하나 + 셰이더 층 훑기 40 · 층 사이 보간, 그림 · 깊이를 캔버스로 같이 그림, 깊이 넓히기 비교) · i559 폰 틀 목업 (DOM 무대, 관성 지수 감쇠 · 고무줄 넘침 · 대본 at(p))
+- 겪은 것: 시차 0.045 는 거의 안 보임 → 0.085 · 층 계단 → 보간 · 폰 rotateX 로 위가 잘림 → 여백 · 관성 뒤 누를 카드가 이미 화면 밖 → 스크롤 뺀 자리
+- 남은 후보: 차트 더 (prompt-motion 의 Charts) · 3D 제품 회전 쇼케이스
+
+## 2026-10-10 — 제품 UI · 흐름도 · 코드 움직임 (i548 ~ i555)
+- 계기: 사용자 「모션 효과가 부족하다, prompt-motion.com 참고」. 그곳은 Opus 5.5 모션 영상 · 프롬프트 갤러리(11갈래, 프롬프트는 짧고 기법 설명 거의 없음, 저작권은 각 제작자) → 내용을 옮기지 않고 분류를 빈칸 지도로만 씀. 비어 있던 것: Product UI · Phone · Diagrams · Code · 2D 입자 · 음악 반응 · 사진 2.5D · 차트 더. 사용자 결정: **Product UI · Diagrams · Code 부터**
+- i548 공유 요소 전환(FLIP) · i549 가짜 커서 UI 시연 · i550 카드 더미 넘기기 · i551 알림 · 창 등장 묶음 (`demos/demosMotionC.ts`) / i552 흐름도 차례 그리기 · i553 나무 구조 펼치기 · i554 코드 타자 + 문법 색 · i555 코드 모양 바꾸기(LCS, Magic Move) (`demos/demosMotionD.ts`). 모두 DOM 견본 — 공용 280×175 무대 `demos/lib/stage.ts`(ResizeObserver 로 통째 scale, 안쪽 offset 값이 무대 단위라 FLIP 측정에 씀)
+- 문서 8개 `docs/docsMotionUI.ts`. 문서 플랫폼에 **`dom`(웹 · HTML/CSS)** 새로 더함(types.ts · prompt.ts PLATFORMS · 지침) — 전엔 `web` = 「화면과 떨어진 순수 함수」라 UI 움직임에 안 맞았음
+- 참고 작품에 Prompt Motion 추가(catalog 참고 목록 + refPreviews og:image)
+- 겪은 것: 커서 따라 확대를 줄곧 켜 두면 결과(장바구니 배지)가 화면 밖 → 누르는 순간 근처만 확대 · 카드 더미 문턱 세로선이 카드에 가려짐 → 위쪽 눈금으로 · 고정폭 글꼴에서 한글 주석은 칸이 안 맞음
+- 다음 후보(같은 조사에서): 2D 입자 글자(글자 → 입자 → 다른 글자) · 음악 반응 시각화 · 사진 2.5D 시차(깊이 지도) · 폰 틀 목업 · 레시피 「게임 소개 영상 30초」(i90 글자 → i549 UI 시연 → i552 흐름도 → i115 로고 → i82 굽기)
+
 ## 2026-10-09 — 블렌더 없이 사진 같은 렌더 (i545 ~ i547)
 - 계기: 사용자의 유튜브 「도구와 기계의 원리」 제작(`C:\Work\01_YouTube\02_도구와 기계의 원리\web` — three-gpu-pathtracer + oidn-web + puppeteer · ffmpeg)이 블렌더 없이 고화질로 나옴 → 스튜디오에 없던 기술 셋 추가
 - i545 GPU 경로 추적 · i546 노이즈 제거(à-trous, 실제는 OIDN) · i547 경로 추적 영상 굽기(프레임마다 수렴 → 찍기, 셔터 시간 모션 블러). 분류 「하드서피스 · 실사 렌더링」
